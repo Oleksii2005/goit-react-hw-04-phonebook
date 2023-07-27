@@ -2,18 +2,52 @@ import { useState } from 'react';
 // import { Component } from 'react';
 import css from './ContactForm.module.css';
 
-function App() {
+// export function ContactForm({ onSubmit }) {
+//   const [name, setName] = useState('');
+//   const [number, setNumber] = useState('');
+
+//   const handleChange = e => {
+//     const { name, value } = e.target;
+//     if (name === 'name') {
+//       setName(value);
+//     } else if (name === 'number') {
+//       setNumber(value);
+//     }
+//   };
+//   const handleSubmit = e => {
+//     e.preventDefault();
+//     if (!onSubmit({ name, number })) return;
+//     reset();
+//   };
+//   const reset = () => {
+//     setName('');
+//     setNumber('');
+//   };
+
+export function ContactForm({ onSubmit }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const handleNameChange = event => {
-    setName(event.target.value);
+  const handleChange = e => {
+    const { name, value } = e.target;
+    if (name === 'name') {
+      setName(value);
+    } else if (name === 'number') {
+      setNumber(value);
+    }
   };
-  const handleNumberChange = event => {
-    setNumber(event.target.value);
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!onSubmit({ name, number })) return;
+    reset();
   };
+  const reset = () => {
+    setName('');
+    setNumber('');
+  };
+
   return (
-    <form className={css.phonebook_container}>
+    <form className={css.phonebook_container} onSubmit={handleSubmit}>
       <label className={css.label}>
         Name
         <input
@@ -23,7 +57,7 @@ function App() {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           value={name}
-          onChange={handleNameChange}
+          onChange={handleChange}
         />
       </label>
       <label className={css.label}>
@@ -35,7 +69,7 @@ function App() {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           value={number}
-          onChange={handleNumberChange}
+          onChange={handleChange}
         />
       </label>
       <button
@@ -48,7 +82,6 @@ function App() {
     </form>
   );
 }
-export default App;
 
 // class ContactForm extends Component {
 //   state = {
