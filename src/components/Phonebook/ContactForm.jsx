@@ -1,32 +1,10 @@
-import { useState } from 'react';
+import { useLocalStorage } from 'components/hooks/useLocalStorage';
 // import { Component } from 'react';
 import css from './ContactForm.module.css';
 
-// export function ContactForm({ onSubmit }) {
-//   const [name, setName] = useState('');
-//   const [number, setNumber] = useState('');
-
-//   const handleChange = e => {
-//     const { name, value } = e.target;
-//     if (name === 'name') {
-//       setName(value);
-//     } else if (name === 'number') {
-//       setNumber(value);
-//     }
-//   };
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     if (!onSubmit({ name, number })) return;
-//     reset();
-//   };
-//   const reset = () => {
-//     setName('');
-//     setNumber('');
-//   };
-
 export function ContactForm({ onSubmit }) {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [name, setName] = useLocalStorage('name', '');
+  const [number, setNumber] = useLocalStorage('number', '');
 
   const handleChange = e => {
     const { name, value } = e.target;
