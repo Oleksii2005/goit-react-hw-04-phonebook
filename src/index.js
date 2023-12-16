@@ -1,70 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from 'components/App';
+
 import './index.css';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+import { App } from 'components/App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
-
-/*
-class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
-  };
-  handleChange = e => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-  handleSubmit = e => {
-    e.preventDefault();
-    if (!this.props.onSubmit({ ...this.state })) return;
-    this.reset();
-  };
-  reset() {
-    this.setState({ name: '', number: '' });
-  }
-  render() {
-    const { name, number } = this.state;
-    return (
-      <form onSubmit={this.handleSubmit} className={css.phonebook_container}>
-        <label className={css.label}>
-          Name
-          <input
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яіїєА-ЯІЇЄ]+(([' \-][a-zA-Zа-яіїєА-ЯІЇЄ ])?[a-zA-Zа-яіїєА-ЯІЇЄ]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            value={name}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label className={css.label}>
-          Number
-          <input
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            value={number}
-            onChange={this.handleChange}
-          />
-        </label>
-        <button
-          type="submit"
-          className={css.phonebook_button}
-          disabled={!name || !Number(number)}
-        >
-          Add contact
-        </button>
-      </form>
-    );
-      }
-}
-
-*/
